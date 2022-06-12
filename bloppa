@@ -1,0 +1,53 @@
+if game.PlaceId == 9488143445 then
+
+	local UI = loadstring(game:HttpGet'https://raw.githubusercontent.com/matthewsaechao/yea-yea/main/yeah%20monkey')()
+
+	local ph = game.Players.LocalPlayer.Character.Head
+	local bloppa = game["😳😳😳😳😳😳😳😳😳😳"].Bloppa
+	local bag = game["😳😳😳😳😳😳😳😳😳😳"].Bags
+	local cd = bloppa.ClickBox.KD
+	local ti = "TouchInterest"
+
+	UI.Title.Text = "Raise A Bloppa" -- Title
+
+	UI.newTab("Main") -- Makes a new tab
+
+	UI.newCheckBox(UI.Main,'Auto Click Bloppa',function(value) -- Makes a toggle box
+		getgenv().auto1 = value;
+
+		while getgenv().auto1 and wait() do
+			pcall(function()
+				fireclickdetector(cd)
+			end)
+		end
+	end)
+
+	UI.newCheckBox(UI.Main,'Auto Collect Money',function(value) -- Makes a toggle box
+		getgenv().auto2 = value;
+
+		while getgenv().auto2 and wait() do
+			pcall(function()
+				for i,v in ipairs(bag:GetDescendants()) do
+					if v.Name == ti then
+						firetouchinterest(v.Parent, ph, 0)
+					end
+				end
+			end)
+		end
+	end)
+
+	UI.newCheckBox(UI.Main,'Auto Collect Bags',function(value) -- Makes a toggle box
+		getgenv().auto3 = value;
+
+		while getgenv().auto3 and wait() do
+			pcall(function()
+				for i,v in ipairs(bag:GetDescendants()) do
+					if v.Name == "CollectWithoutProx" then
+						v:Fire()
+					end
+				end
+			end)
+		end
+	end)
+	
+end
